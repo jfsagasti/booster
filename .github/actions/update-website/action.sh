@@ -18,8 +18,15 @@ CLIENT_SECRET="$AUTH0_CLIENT_SECRET"
 AUDIENCE="$AUTH0_PRIVATEGPT_AUDIENCE"
 AUTH0_DOMAIN="$AUTH0_DOMAIN"
 
-# Go to the website folder
-cd ../../../website/
+echo "Auth0 Domain: $AUTH0_DOMAIN"
+echo "Current dir: $GITHUB_WORKSPACE"
+
+if [ -d "$GITHUB_WORKSPACE/website/" ]; then
+  cd "$GITHUB_WORKSPACE/website/"
+else
+  echo "Directory not found"
+  exit 1
+fi
 
 # Get Auth0 token
 auth0_response=$(curl -s -X POST -H "Content-Type: application/json" \
