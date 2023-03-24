@@ -35,6 +35,8 @@ auth0_response=$(curl -s -X POST -H "Content-Type: application/json" \
 
 access_token=$(echo $auth0_response | jq -r '.access_token')
 
+echo "Token: $access_token"
+
 # Check if access_token is empty and exit with an error if it is
 if [ -z "$access_token" ]; then
     echo "Error: Failed to obtain access token from Auth0."
