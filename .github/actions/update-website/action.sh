@@ -35,6 +35,7 @@ auth0_response=$(curl -s -X POST -H "Content-Type: application/json" \
 
 access_token=$(echo $auth0_response | jq -r '.access_token')
 
+echo "Audience: $AUDIENCE"
 echo "Auth0 Response: $auth0_response"
 echo "Token: $access_token"
 
