@@ -50,7 +50,7 @@ graphql_result=$(curl -X POST -H "Content-Type: application/json" -H "Authorizat
 
 # For debugging purposes to print the result of the query
 # printf '%s' "$graphql_result" | jq '.data.ListPageReadModels.items[] | {id, path, title, checksum}'
-printf '%s' "$graphql_result" | jq
+echo "$graphql_result" | jq
 
 # Parse the GraphQL result using jq
 items=$(echo $graphql_result | jq '.data.ListPageReadModels.items')
@@ -65,6 +65,9 @@ paths=()
 checksums=()
 
 echo "Remote Files ========================="
+
+
+
 # Loop over each item in the 'items' array
 for item in $(echo "${items}" | jq -r '.[] | @base64'); do
   # Decode the base64-encoded JSON for the current item
