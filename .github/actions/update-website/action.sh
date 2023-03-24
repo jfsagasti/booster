@@ -50,12 +50,12 @@ graphql_result=$(curl -X POST -H "Content-Type: application/json" -H "Authorizat
 
 # For debugging purposes to print the result of the query
 # printf '%s' "$graphql_result" | jq '.data.ListPageReadModels.items[] | {id, path, title, checksum}'
+printf '%s' "$graphql_result" | jq
 
 # Parse the GraphQL result using jq
 items=$(echo $graphql_result | jq '.data.ListPageReadModels.items')
 count=$(echo $graphql_result | jq '.data.ListPageReadModels.count')
 cursor=$(echo $graphql_result | jq '.data.ListPageReadModels.cursor')
-
 
 remote_file_paths=()
 remote_file_checksums=()
