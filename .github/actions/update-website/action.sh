@@ -50,7 +50,8 @@ graphql_result=$(curl -X POST -H "Content-Type: application/json" -H "Authorizat
 
 # For debugging purposes to print the result of the query
 # printf '%s' "$graphql_result" | jq '.data.ListPageReadModels.items[] | {id, path, title, checksum}'
-echo "$graphql_result" | jq
+echo "LOL"
+echo "$graphql_result"
 
 # Parse the GraphQL result using jq
 items=$(echo $graphql_result | jq '.data.ListPageReadModels.items')
