@@ -35,10 +35,6 @@ auth0_response=$(curl -s -X POST -H "Content-Type: application/json" \
 
 access_token=$(echo $auth0_response | jq -r '.access_token')
 
-echo "Audience: $AUDIENCE"
-echo "Auth0 Response: $auth0_response"
-echo "Token: $access_token"
-
 # Check if access_token is empty or null and exit with an error if it is
 if [ -z "$access_token" ] || [ "$access_token" = "null" ]; then
     echo "Error: Failed to obtain access token from Auth0."
@@ -54,8 +50,6 @@ graphql_result=$(curl -X POST -H "Content-Type: application/json" -H "Authorizat
 
 # For debugging purposes to print the result of the query
 # printf '%s' "$graphql_result" | jq '.data.ListPageReadModels.items[] | {id, path, title, checksum}'
-echo "LOL"
-echo "$graphql_result"
 
 # Parse the GraphQL result using jq
 items=$(echo $graphql_result | jq '.data.ListPageReadModels.items')
@@ -70,8 +64,6 @@ paths=()
 checksums=()
 
 echo "Remote Files ========================="
-
-
 
 # Loop over each item in the 'items' array
 for item in $(echo "${items}" | jq -r '.[] | @base64'); do
