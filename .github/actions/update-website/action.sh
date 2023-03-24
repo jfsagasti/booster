@@ -13,10 +13,10 @@ GRAPHQL_URL="$AI_BOOSTER_URL"
 REPO_URL="https://raw.githubusercontent.com/boostercloud/booster/main/website/"
 
 # Auth0 credentials from environment variables
-CLIENT_ID="$AUTH0_CLIENT_ID"
-CLIENT_SECRET="$AUTH0_CLIENT_SECRET"
-AUDIENCE="$AUTH0_PRIVATEGPT_AUDIENCE"
-AUTH0_DOMAIN="$AUTH0_DOMAIN"
+CLIENT_ID=$AUTH0_CLIENT_ID
+CLIENT_SECRET=$AUTH0_CLIENT_SECRET
+AUDIENCE=$AUTH0_PRIVATEGPT_AUDIENCE
+AUTH0_DOMAIN=$AUTH0_DOMAIN
 
 echo "Auth0 Domain: $AUTH0_DOMAIN"
 echo "Current dir: $GITHUB_WORKSPACE"
@@ -39,7 +39,7 @@ echo "Audience: $AUDIENCE"
 echo "Auth0 Response: $auth0_response"
 echo "Token: $access_token"
 
-# Check if access_token is empty and exit with an error if it is
+# Check if access_token is empty or null and exit with an error if it is
 if [ -z "$access_token" ]; then
     echo "Error: Failed to obtain access token from Auth0."
     exit 1
